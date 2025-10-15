@@ -1,0 +1,49 @@
+<div class="login-container">
+<div class="outer">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="pt-3 font-weight-bold text-dark">Admin Login</h3>
+    </div>
+
+    <div class="panel-body p-3">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+        <div class="form-group">
+          <div class="input-group" [class.error]="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+            <span class="input-group-text">
+              <i class="fa fa-user"></i>
+            </span>
+            <input type="text" class="form-control" formControlName="email" placeholder="Email" />
+          </div>
+          <small class="text-danger" *ngIf="loginForm.get('email')?.hasError('required') && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+            *Email is required
+          </small>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group" [class.error]="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+            <span class="input-group-text">
+              <i class="fa fa-lock"></i>
+            </span>
+            <input
+              [type]='type'
+              class="form-control"
+              formControlName="password"
+              placeholder="Password"
+              
+              
+            />
+            <span (click)="hideshowpass()" class="fa {{ eyeIcon }} eye-icon"></span>
+          </div>
+          <small class="text-danger" *ngIf="loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+            *Password is required
+          </small>
+        </div>
+
+       
+        <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
+        <button type="reset" class="btn btn-primary btn-block mt-4">Reset</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

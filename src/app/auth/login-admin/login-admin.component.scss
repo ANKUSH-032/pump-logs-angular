@@ -1,0 +1,79 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .outer {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .panel {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .panel-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    position: relative;
+  }
+
+  .input-group-text {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+  }
+
+  .form-control {
+    padding-right: 40px; /* Adjusted to add space for the eye icon */
+  }
+
+  .eye-icon {
+    cursor: pointer;
+    position: absolute;
+    left: 280px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .fr {
+    text-align: right;
+  }
+
+  .btn-block {
+    width: 100%;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-muted {
+    color: #888;
+  }
+  .login-container {
+    background-size: cover;
+    height: 100vh; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
