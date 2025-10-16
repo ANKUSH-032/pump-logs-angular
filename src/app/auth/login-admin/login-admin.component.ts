@@ -32,6 +32,8 @@ export class LoginAdminComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    localStorage.removeItem('token');
   }
 
   hideshowpass() {
