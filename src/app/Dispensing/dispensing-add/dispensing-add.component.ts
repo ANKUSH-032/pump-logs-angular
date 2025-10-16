@@ -32,16 +32,16 @@ export class DispensingAddComponent implements OnInit {
       QuantityFilled: ['', Validators.required],
       VehicleNumber: ['', Validators.required],
       PaymentMode: ['', Validators.required],
-      File: [null] // ✅ file field
+      File: [null] 
     });
 
     this.loadMasters();
   }
 
-  /** 🔹 Load both master APIs using forkJoin (parallel calls) */
+  
   loadMasters() {
-    const dispenserApi = this.auth.postReq('Master/GetDispenserList', {});
-    const paymentApi = this.auth.postReq('Master/GetPaymentModes', {});
+    const dispenserApi = this.auth.postReq('MasterList', {});
+    const paymentApi = this.auth.postReq('MasterList', {});
 
     forkJoin([dispenserApi, paymentApi]).subscribe({
       next: ([dispenserRes, paymentRes]) => {
@@ -73,7 +73,6 @@ onFileSelected(event: any) {
 
 
  onSubmit() {
-  // Mark all fields as touched to trigger validation messages
   this.addDispensing.markAllAsTouched();
 
   if (this.addDispensing.valid && !this.fileError) {

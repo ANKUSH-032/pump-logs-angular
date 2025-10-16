@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
+
 
 @Component({
   selector: 'app-login-admin',
@@ -21,25 +21,21 @@ export class LoginAdminComponent implements OnInit {
   submitted = false;
   username: any;
   password: any;
-  fieldTextType :boolean = false
+  fieldTextType: boolean = false
   constructor(private fb: FormBuilder,
     private authService: AuthService,
-    private route : Router,
-    private storageService : StorageService,
-    private toastr: ToastrService,){}
+    private route: Router,
+    private toastr: ToastrService,) { }
 
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-    this.clearToken();
-    
+
   }
-  refreshPage() {
-    throw new Error('Method not implemented.');
-  }
+
 
   hideshowpass() {
     this.isText = !this.isText;
@@ -48,47 +44,38 @@ export class LoginAdminComponent implements OnInit {
   }
 
   onLogin() {
-   // debugger;
+
+    this.loginForm.markAllAsTouched();
     this.submitted = true;
-  
+
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
 
       this.authService.postRequest('Auth/login', loginData).subscribe(
         (res: any) => {
-          
+
           if (res && res.status) {
-         
-            localStorage.setItem('isLoggedIn', 'true');
+
             localStorage.setItem('token', res.userdetails.token);
-            this.storageService.set('user', res.data);
-            this.storageService.set('token', res.userdetails.token);
-            this.storageService.set('role', res.userdetails.role);
-            this.toastr.success(res.message || 'Login successful'); 
-            console.log(res.userdetails.role);
-              this.route.navigateByUrl('/dispensing-list');
-          } 
-          else  {
            
-            this.toastr.error(res.message || 'Login unsuccessful'); 
+            this.toastr.success(res.message || 'Login successful');
+            console.log(res.userdetails.role);
+            this.route.navigateByUrl('/dispensing-list');
+          }
+          else {
+
+            this.toastr.error(res.message || 'Login unsuccessful');
           }
         },
         (res) => {
           this.toastr.error(res.message || 'Login unsuccessful');
-         // this.toastr.error('Error in login request'); 
+
         }
       );
-  
+
     } else {
-      
-    //  ValiadateForm.validateAllFormFileds(this.loginForm);
       this.toastr.error('Your form is invalid');
     }
-  }
-  private clearToken() {
-
-    localStorage.removeItem('token');
-   
   }
 
 }

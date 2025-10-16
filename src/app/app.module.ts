@@ -15,7 +15,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { DispensingAddComponent } from './Dispensing/dispensing-add/dispensing-add.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginAdminComponent,DispensingListComponent, DispensingAddComponent],
+  declarations: [AppComponent, LoginAdminComponent, DispensingListComponent, DispensingAddComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,4 +35,4 @@ import { DispensingAddComponent } from './Dispensing/dispensing-add/dispensing-a
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

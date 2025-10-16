@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
-
-
 
 @Component({
   selector: 'app-dispensing-list',
@@ -19,7 +16,7 @@ export class DispensingListComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
-    private storageService: StorageService
+  
   ) {}
   ngOnInit(): void {
     this.dtOptions = {
@@ -38,7 +35,7 @@ export class DispensingListComponent implements OnInit {
       next: 'Next',
       previous: 'Previous',
     },
-    search: 'Description Search:',  // ✅ changed here
+    search: 'Description Search:',  
     lengthMenu: 'Show _MENU_ entries',
     info: 'Showing _START_ to _END_ of _TOTAL_ entries',
     infoEmpty: 'Showing 0 to 0 of 0 entries',
@@ -73,7 +70,7 @@ export class DispensingListComponent implements OnInit {
   }
 
   downloadRecord(item: any): void {
-    // Example: download JSON file or PDF from backend
+    
     const fileName = `dispensing_${item.dispenserNo}.json`;
     const fileData = JSON.stringify(item, null, 2);
     const blob = new Blob([fileData], { type: 'application/json' });
@@ -86,6 +83,7 @@ export class DispensingListComponent implements OnInit {
 
     window.URL.revokeObjectURL(url);
   }
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
