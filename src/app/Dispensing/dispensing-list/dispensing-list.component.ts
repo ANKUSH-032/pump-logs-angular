@@ -12,9 +12,9 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./dispensing-list.component.scss'],
 })
 export class DispensingListComponent implements OnInit {
-  dtOptions={};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  patientList: any = [];
+  dispenserList: any = [];
   // patinet: DoctorList = {
   //   firstName: '',
   //   lastName: '',
@@ -70,13 +70,13 @@ export class DispensingListComponent implements OnInit {
       SortCol: '',
     };
 
-    this.authService.postReq('Doctors/list', apiParams).subscribe(
+    this.authService.postReq('PumpLog/list', apiParams).subscribe(
       (data) => {
-        this.patientList = data['data'];
+        this.dispenserList = data['data'];
         this.dtTrigger.next(); // Trigger DataTable update after data is loaded
       },
       (error) => {
-        console.error('Error fetching patient list:', error);
+        console.error('Error fetching dispenser list:', error);
         // Handle error
       }
     );
@@ -90,3 +90,4 @@ export class DispensingListComponent implements OnInit {
     this.dtTrigger.unsubscribe();
   }
 }
+  

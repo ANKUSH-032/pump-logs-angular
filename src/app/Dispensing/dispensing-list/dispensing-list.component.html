@@ -9,30 +9,21 @@
           <table class="table table-bordered table-striped" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
             <thead>
               <tr>
-                <th class="text-center">First Name</th>
-                <th class="text-center">Last Name</th>
-                <th class="text-center">Gender</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Phone Number</th>
-                <th class="text-center">Role Name</th>
-                <th class="text-center">Zip Code</th>
-                <th class="text-center">Address</th>
-                <th class="text-center">Hospital Name</th>
+                <th class="text-center">Dispenser No</th>
+                <th class="text-center">QuantityFilled</th>
+                <th class="text-center">Vehicle Number</th>
+                <th class="text-center">Payment Mode</th>
                 <th class="text-center">Action</th>
               </tr>
             </thead>
   
             <tbody>
-              <tr *ngFor="let list of patientList">
-                <td class="text-center">{{ list.firstName }}</td>
-                <td class="text-center">{{ list.lastName }}</td>
-                <td class="text-center">{{ list.gender }}</td>
-                <td class="text-center">{{ list.email }}</td>
-                <td class="text-center">{{ list.contactNo }}</td>
-                <td class="text-center">{{ list.roleID }}</td>
-                <td class="text-center">{{ list.zipCode }}</td>
-                <td class="text-center">{{ list.address }}</td>
-                <td class="text-center">{{ list.hospitalName }}</td>
+              <tr *ngFor="let list of dispenserList">
+                <td class="text-center">{{ list.dispenserNo }}</td>
+                <td class="text-center">{{ list.quantityFilled }}</td>
+                <td class="text-center">{{ list.vehicleNumber }}</td>
+                <td class="text-center">{{ list.paymentMode }}</td>
+                
                 <td class="text-center">
                   <div class="btn-group" role="group" aria-label="User Actions">
                     <button title="Edit User" class="btn btn-primary me-2" [routerLink]="['/edit-doctor', list.doctorId]">
