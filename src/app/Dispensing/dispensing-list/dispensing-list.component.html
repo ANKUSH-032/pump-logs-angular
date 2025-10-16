@@ -1,4 +1,29 @@
 <div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <input
+        type="date"
+        class="form-control"
+        placeholder="Start Date"
+        [(ngModel)]="startDate"
+        (change)="filterByDate()"
+      />
+    </div>
+    <div class="col-md-3">
+      <input
+        type="date"
+        class="form-control"
+        placeholder="End Date"
+        [(ngModel)]="endDate"
+        (change)="filterByDate()"
+      />
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-secondary" (click)="resetDateFilter()">
+        Reset
+      </button>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12">
       <div class="d-flex justify-content-between align-items-center mb-3">
@@ -21,6 +46,7 @@
               <th class="text-center">Quantity Filled</th>
               <th class="text-center">Vehicle Number</th>
               <th class="text-center">Payment Mode</th>
+              <th class="text-center">CreatedOn</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
@@ -31,22 +57,21 @@
               <td class="text-center">{{ list.quantityFilled }}</td>
               <td class="text-center">{{ list.vehicleNumber }}</td>
               <td class="text-center">{{ list.paymentMode }}</td>
+              <td class="text-center">{{ list.createdOn }}</td>
               <td class="text-center">
                 <div class="btn-group" role="group" aria-label="Actions">
-                  
-                  <button
+                  <!-- <button
                     class="btn btn-info btn-sm me-2"
                     title="View Record"
                     
                   >
                     <i class="bi bi-eye"></i> View
-                  </button>
+                  </button> -->
 
-                 
                   <button
                     class="btn btn-success btn-sm"
                     title="Download Record"
-                    (click)="downloadRecord(list)"
+                    (click)="downloadRecordFromApi(list.paymentProofPath)"
                   >
                     <i class="bi bi-download"></i> Download
                   </button>
@@ -55,7 +80,9 @@
             </tr>
 
             <tr *ngIf="dispenserList.length === 0">
-              <td colspan="5" class="text-center text-muted">No records found.</td>
+              <td colspan="5" class="text-center text-muted">
+                No records found.
+              </td>
             </tr>
           </tbody>
         </table>

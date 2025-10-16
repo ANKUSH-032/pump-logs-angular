@@ -6,8 +6,12 @@
       </div>
 
       <div class="panel-body p-3">
-        <form [formGroup]="addDispensing" (ngSubmit)="onSubmit()" class="horizontal-form" enctype="multipart/form-data">
-
+        <form
+          [formGroup]="addDispensing"
+          (ngSubmit)="onSubmit()"
+          class="horizontal-form"
+          enctype="multipart/form-data"
+        >
           <!-- Dispenser No -->
           <div class="form-group dropdown-form-group">
             <div class="input-group">
@@ -16,12 +20,21 @@
               </span>
               <select class="form-control" formControlName="DispenserNo">
                 <option value="" disabled selected>Select Dispenser No</option>
-                <option *ngFor="let dispenser of dispenserList" [value]="dispenser.value">
-                  {{ dispenser.label }}
+                <option
+                  *ngFor="let dispenser of dispenserList"
+                  [value]="dispenser.id"
+                >
+                  {{ dispenser.value }}
                 </option>
               </select>
             </div>
-            <small class="text-danger" *ngIf="addDispensing.controls['DispenserNo'].touched && addDispensing.controls['DispenserNo'].invalid">
+            <small
+              class="text-danger"
+              *ngIf="
+                addDispensing.controls['DispenserNo'].touched &&
+                addDispensing.controls['DispenserNo'].invalid
+              "
+            >
               *Dispenser No is required
             </small>
           </div>
@@ -32,9 +45,20 @@
               <span class="input-group-text">
                 <i class="fa fa-flask"></i>
               </span>
-              <input type="number" class="form-control" placeholder="Quantity Filled" formControlName="QuantityFilled" />
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Quantity Filled"
+                formControlName="QuantityFilled"
+              />
             </div>
-            <small class="text-danger" *ngIf="addDispensing.controls['QuantityFilled'].touched && addDispensing.controls['QuantityFilled'].invalid">
+            <small
+              class="text-danger"
+              *ngIf="
+                addDispensing.controls['QuantityFilled'].touched &&
+                addDispensing.controls['QuantityFilled'].invalid
+              "
+            >
               *Quantity Filled is required
             </small>
           </div>
@@ -45,9 +69,20 @@
               <span class="input-group-text">
                 <i class="fa fa-car"></i>
               </span>
-              <input type="text" class="form-control" placeholder="Vehicle Number" formControlName="VehicleNumber" />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Vehicle Number"
+                formControlName="VehicleNumber"
+              />
             </div>
-            <small class="text-danger" *ngIf="addDispensing.controls['VehicleNumber'].touched && addDispensing.controls['VehicleNumber'].invalid">
+            <small
+              class="text-danger"
+              *ngIf="
+                addDispensing.controls['VehicleNumber'].touched &&
+                addDispensing.controls['VehicleNumber'].invalid
+              "
+            >
               *Vehicle Number is required
             </small>
           </div>
@@ -60,12 +95,18 @@
               </span>
               <select class="form-control" formControlName="PaymentMode">
                 <option value="" disabled selected>Select Payment Mode</option>
-                <option *ngFor="let mode of paymentModes" [value]="mode.value">
-                  {{ mode.label }}
+                <option *ngFor="let mode of paymentModes" [value]="mode.id">
+                  {{ mode.value }}
                 </option>
               </select>
             </div>
-            <small class="text-danger" *ngIf="addDispensing.controls['PaymentMode'].touched && addDispensing.controls['PaymentMode'].invalid">
+            <small
+              class="text-danger"
+              *ngIf="
+                addDispensing.controls['PaymentMode'].touched &&
+                addDispensing.controls['PaymentMode'].invalid
+              "
+            >
               *Payment Mode is required
             </small>
           </div>
@@ -76,7 +117,12 @@
               <span class="input-group-text">
                 <i class="fa fa-file-upload"></i>
               </span>
-              <input type="file" class="form-control" (change)="onFileSelected($event)" accept=".pdf,.jpg,.jpeg,.png" />
+              <input
+                type="file"
+                class="form-control"
+                (change)="onFileSelected($event)"
+                accept=".pdf,.jpg,.jpeg,.png"
+              />
             </div>
             <small class="text-danger" *ngIf="fileError">
               *Please select a valid file (PDF/JPG/PNG)
@@ -84,7 +130,9 @@
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Add</button>
+          <button type="submit" class="btn btn-primary btn-block mt-4 w-100">
+            Add
+          </button>
 
           <div class="text-center pt-4 text-muted">
             <a id="forget" routerLink="/dispensing-list">Back To List</a>
