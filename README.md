@@ -2,7 +2,8 @@
 # Petro Pump Dispensing Log Application
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
-
+API Link : https://github.com/ANKUSH-032/PumpLog.API
+Angular Link : https://github.com/ANKUSH-032/pump-logs-angular
 
 ## 1. Project Overview
 This is a **Petro Pump Dispensing Log application** that allows users to manage and track dispensing records at a petrol pump. The application provides:
