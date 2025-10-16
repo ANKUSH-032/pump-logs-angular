@@ -33,8 +33,8 @@ The choice of Angular + ASP.NET Core + SQL Server + Dapper is based on existing 
 ### Prerequisites
 - Node.js and npm installed
 - Angular CLI installed (`npm install -g @angular/cli`)
-- .NET Core SDK installed
-- SQL Server (local or Docker instance)
+- .NET Core SDK installed (Version 8.0)
+- SQL Server (local Server)
 
 ### Backend Setup
 1. Open the ASP.NET Core Web API project in Visual Studio or VS Code.
@@ -64,7 +64,7 @@ npm install
 
 3. Update the API base URL in `auth.service.ts` or environment files:
 4. 
-const baseURL = 'http://localhost:5000/api/';
+const baseURL = 'http://localhost:44300/api/';
 
 5. Run the Angular application:
 
