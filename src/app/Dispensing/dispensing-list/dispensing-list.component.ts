@@ -15,17 +15,7 @@ export class DispensingListComponent implements OnInit {
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject<any>();
   dispenserList: any = [];
-  // patinet: DoctorList = {
-  //   firstName: '',
-  //   lastName: '',
-  //   contactNo: '',
-  //   gender: '',
-  //   email: '',
-  //   roleId: '',
-  //   address: '',
-  //   hospitalName: '',
-  //   zipCode: ''
-  // }
+  
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
@@ -33,29 +23,29 @@ export class DispensingListComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.dtOptions = {
-      pagingType: 'simple_numbers',
-      pageLength: 10,
-      ordering: true, // Enable global ordering
+  pagingType: 'simple_numbers',
+  pageLength: 10,
+  ordering: true,
+  searching: true,
+  lengthChange: true,
+  info: true,
+  autoWidth: true,
+  responsive: true,
+  language: {
+    paginate: {
+      first: 'First',
+      last: 'Last',
+      next: 'Next',
+      previous: 'Previous',
+    },
+    search: 'Description Search:',  // ✅ changed here
+    lengthMenu: 'Show _MENU_ entries',
+    info: 'Showing _START_ to _END_ of _TOTAL_ entries',
+    infoEmpty: 'Showing 0 to 0 of 0 entries',
+    infoFiltered: '(filtered from _MAX_ total entries)',
+  },
+};
 
-      searching: true,
-      lengthChange: true,
-      info: true,
-      autoWidth: true,
-      responsive: true,
-      language: {
-        paginate: {
-          first: 'First',
-          last: 'Last',
-          next: 'Next',
-          previous: 'Previous',
-        },
-        search: 'Doctor Name Search:',
-        lengthMenu: 'Show _MENU_ entries',
-        info: 'Showing _START_ to _END_ of _TOTAL_ entries',
-        infoEmpty: 'Showing 0 to 0 of 0 entries',
-        infoFiltered: '(filtered from _MAX_ total entries)',
-      },
-    };
   }
 
   ngAfterViewInit() {
@@ -65,7 +55,7 @@ export class DispensingListComponent implements OnInit {
   loadData() {
     const apiParams = {
       SearchKey: '',
-      Start: 0, // You can set appropriate values for Start, PageSize, and SortCol
+      Start: 0, 
       PageSize: -1,
       SortCol: '',
     };
@@ -73,18 +63,28 @@ export class DispensingListComponent implements OnInit {
     this.authService.postReq('PumpLog/list', apiParams).subscribe(
       (data) => {
         this.dispenserList = data['data'];
-        this.dtTrigger.next(); // Trigger DataTable update after data is loaded
+        this.dtTrigger.next(); 
       },
       (error) => {
         console.error('Error fetching dispenser list:', error);
-        // Handle error
+        
       }
     );
   }
 
-  onViewData(): boolean {
-    const viewData = this.storageService.get('role');
-    return viewData.toLowerCase() === 'admin';
+  downloadRecord(item: any): void {
+    // Example: download JSON file or PDF from backend
+    const fileName = `dispensing_${item.dispenserNo}.json`;
+    const fileData = JSON.stringify(item, null, 2);
+    const blob = new Blob([fileData], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.click();
+
+    window.URL.revokeObjectURL(url);
   }
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();

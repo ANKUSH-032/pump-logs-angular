@@ -1,0 +1,96 @@
+<div class="login-container">
+  <div class="outer">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="pt-3 font-weight-bold text-dark">Add Dispenser</h3>
+      </div>
+
+      <div class="panel-body p-3">
+        <form [formGroup]="addDispensing" (ngSubmit)="onSubmit()" class="horizontal-form" enctype="multipart/form-data">
+
+          <!-- Dispenser No -->
+          <div class="form-group dropdown-form-group">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa fa-tint"></i>
+              </span>
+              <select class="form-control" formControlName="DispenserNo">
+                <option value="" disabled selected>Select Dispenser No</option>
+                <option *ngFor="let dispenser of dispenserList" [value]="dispenser.value">
+                  {{ dispenser.label }}
+                </option>
+              </select>
+            </div>
+            <small class="text-danger" *ngIf="addDispensing.controls['DispenserNo'].touched && addDispensing.controls['DispenserNo'].invalid">
+              *Dispenser No is required
+            </small>
+          </div>
+
+          <!-- Quantity Filled -->
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa fa-flask"></i>
+              </span>
+              <input type="number" class="form-control" placeholder="Quantity Filled" formControlName="QuantityFilled" />
+            </div>
+            <small class="text-danger" *ngIf="addDispensing.controls['QuantityFilled'].touched && addDispensing.controls['QuantityFilled'].invalid">
+              *Quantity Filled is required
+            </small>
+          </div>
+
+          <!-- Vehicle Number -->
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa fa-car"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Vehicle Number" formControlName="VehicleNumber" />
+            </div>
+            <small class="text-danger" *ngIf="addDispensing.controls['VehicleNumber'].touched && addDispensing.controls['VehicleNumber'].invalid">
+              *Vehicle Number is required
+            </small>
+          </div>
+
+          <!-- Payment Mode -->
+          <div class="form-group dropdown-form-group">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa fa-credit-card"></i>
+              </span>
+              <select class="form-control" formControlName="PaymentMode">
+                <option value="" disabled selected>Select Payment Mode</option>
+                <option *ngFor="let mode of paymentModes" [value]="mode.value">
+                  {{ mode.label }}
+                </option>
+              </select>
+            </div>
+            <small class="text-danger" *ngIf="addDispensing.controls['PaymentMode'].touched && addDispensing.controls['PaymentMode'].invalid">
+              *Payment Mode is required
+            </small>
+          </div>
+
+          <!-- File Upload -->
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa fa-file-upload"></i>
+              </span>
+              <input type="file" class="form-control" (change)="onFileSelected($event)" accept=".pdf,.jpg,.jpeg,.png" />
+            </div>
+            <small class="text-danger" *ngIf="fileError">
+              *Please select a valid file (PDF/JPG/PNG)
+            </small>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Add</button>
+
+          <div class="text-center pt-4 text-muted">
+            <a id="forget" routerLink="/dispensing-list">Back To List</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
