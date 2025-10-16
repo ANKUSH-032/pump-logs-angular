@@ -11,25 +11,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DispensingListComponent } from './Dispensing/dispensing-list/dispensing-list.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import { DataTablesModule } from 'angular-datatables';;
+import { DataTablesModule } from 'angular-datatables';
+import { DispensingAddComponent } from './Dispensing/dispensing-add/dispensing-add.component';
+
 @NgModule({
-  declarations: [AppComponent, LoginAdminComponent,DispensingListComponent],
+  declarations: [AppComponent, LoginAdminComponent,DispensingListComponent, DispensingAddComponent],
   imports: [
     BrowserModule,
-    DataTablesModule,
     AppRoutingModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-  
     CdkTableModule,
     ToastrModule.forRoot({
       timeOut: 4000,
       preventDuplicates: true,
       positionClass: 'toast-top-right',
     }),
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent],
